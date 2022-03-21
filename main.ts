@@ -1,47 +1,121 @@
-function light_logic () {
-    let j: number;
-if (rope == 5) {
-        for (let i = 0; i <= 3; i++) {
-            red.setPixelColor(i, neopixel.colors(NeoPixelColors.Red))
-            red.show()
-        }
-        j = 6
-        while (j < 11) {
-            blue.setPixelColor(j, neopixel.colors(NeoPixelColors.Blue))
-            blue.show()
-            j += 1
-        }
-    }
+function bluewinreverse () {
+    strip.setPixelColor(0, neopixel.colors(NeoPixelColors.White))
+    strip.setPixelColor(2, neopixel.colors(NeoPixelColors.White))
+    strip.setPixelColor(4, neopixel.colors(NeoPixelColors.White))
+    strip.setPixelColor(6, neopixel.colors(NeoPixelColors.White))
+    strip.setPixelColor(8, neopixel.colors(NeoPixelColors.White))
+    strip.setPixelColor(10, neopixel.colors(NeoPixelColors.White))
+    strip.setPixelColor(1, neopixel.colors(NeoPixelColors.Blue))
+    strip.setPixelColor(3, neopixel.colors(NeoPixelColors.Blue))
+    strip.setPixelColor(5, neopixel.colors(NeoPixelColors.Blue))
+    strip.setPixelColor(7, neopixel.colors(NeoPixelColors.Blue))
+    strip.setPixelColor(9, neopixel.colors(NeoPixelColors.Blue))
+    strip.show()
+}
+function redwin () {
+    strip.setPixelColor(0, neopixel.colors(NeoPixelColors.Red))
+    strip.setPixelColor(2, neopixel.colors(NeoPixelColors.Red))
+    strip.setPixelColor(4, neopixel.colors(NeoPixelColors.Red))
+    strip.setPixelColor(6, neopixel.colors(NeoPixelColors.Red))
+    strip.setPixelColor(8, neopixel.colors(NeoPixelColors.Red))
+    strip.setPixelColor(10, neopixel.colors(NeoPixelColors.Red))
+    strip.setPixelColor(1, neopixel.colors(NeoPixelColors.White))
+    strip.setPixelColor(3, neopixel.colors(NeoPixelColors.White))
+    strip.setPixelColor(5, neopixel.colors(NeoPixelColors.White))
+    strip.setPixelColor(7, neopixel.colors(NeoPixelColors.White))
+    strip.setPixelColor(9, neopixel.colors(NeoPixelColors.White))
+    strip.show()
+}
+input.onButtonPressed(Button.A, function () {
+    ONSTART()
+})
+function redwinreverse () {
+    strip.setPixelColor(0, neopixel.colors(NeoPixelColors.White))
+    strip.setPixelColor(2, neopixel.colors(NeoPixelColors.White))
+    strip.setPixelColor(4, neopixel.colors(NeoPixelColors.White))
+    strip.setPixelColor(6, neopixel.colors(NeoPixelColors.White))
+    strip.setPixelColor(8, neopixel.colors(NeoPixelColors.White))
+    strip.setPixelColor(10, neopixel.colors(NeoPixelColors.White))
+    strip.setPixelColor(1, neopixel.colors(NeoPixelColors.Red))
+    strip.setPixelColor(3, neopixel.colors(NeoPixelColors.Red))
+    strip.setPixelColor(5, neopixel.colors(NeoPixelColors.Red))
+    strip.setPixelColor(7, neopixel.colors(NeoPixelColors.Red))
+    strip.setPixelColor(9, neopixel.colors(NeoPixelColors.Red))
+    strip.show()
 }
 input.onPinPressed(TouchPin.P2, function () {
-    rope += -0.1
+    rope += -1
+    strip.rotate(-1)
+    strip.show()
+    blue.setPixelColor(4, neopixel.colors(NeoPixelColors.Blue))
+    blue.show()
 })
 input.onButtonPressed(Button.AB, function () {
-    a_line += 0.1
-    b_line += -0.1
+    ONSTART()
+})
+function bluewin () {
+    strip.setPixelColor(0, neopixel.colors(NeoPixelColors.Blue))
+    strip.setPixelColor(2, neopixel.colors(NeoPixelColors.Blue))
+    strip.setPixelColor(4, neopixel.colors(NeoPixelColors.Blue))
+    strip.setPixelColor(6, neopixel.colors(NeoPixelColors.Blue))
+    strip.setPixelColor(8, neopixel.colors(NeoPixelColors.Blue))
+    strip.setPixelColor(10, neopixel.colors(NeoPixelColors.Blue))
+    strip.setPixelColor(1, neopixel.colors(NeoPixelColors.White))
+    strip.setPixelColor(3, neopixel.colors(NeoPixelColors.White))
+    strip.setPixelColor(5, neopixel.colors(NeoPixelColors.White))
+    strip.setPixelColor(7, neopixel.colors(NeoPixelColors.White))
+    strip.setPixelColor(9, neopixel.colors(NeoPixelColors.White))
+    strip.show()
+}
+input.onButtonPressed(Button.B, function () {
+    rope += -1
+    strip.rotate(-1)
+    strip.show()
+    blue.setPixelColor(4, neopixel.colors(NeoPixelColors.Blue))
+    blue.show()
 })
 input.onPinPressed(TouchPin.P1, function () {
-    rope += 0.1
+    rope += 1
+    strip.rotate(1)
+    strip.show()
+    red.setPixelColor(0, neopixel.colors(NeoPixelColors.Red))
+    red.show()
 })
-let b_line = 0
-let a_line = 0
-let rope = 0
-let blue: neopixel.Strip = null
+function ONSTART () {
+    strip = neopixel.create(DigitalPin.P16, 11, NeoPixelMode.RGB)
+    ropelight = strip.range(5, 1)
+    red = strip.range(0, 5)
+    blue = strip.range(6, 5)
+    rope = 5
+    red.setBrightness(255)
+    blue.setBrightness(255)
+    strip.setBrightness(255)
+    ropelight.setBrightness(255)
+    red.showColor(neopixel.colors(NeoPixelColors.Red))
+    ropelight.showColor(neopixel.colors(NeoPixelColors.White))
+    blue.showColor(neopixel.colors(NeoPixelColors.Blue))
+    strip.show()
+}
+let ropelight: neopixel.Strip = null
 let red: neopixel.Strip = null
-let strip = neopixel.create(DigitalPin.P16, 11, NeoPixelMode.RGB)
-let ropelight = strip.range(0, 11)
-red = strip.range(0, 11)
-blue = strip.range(0, 11)
-rope = 5
-ropelight.setPixelColor(5, neopixel.colors(NeoPixelColors.White))
-red.setPixelColor(4, neopixel.colors(NeoPixelColors.Red))
-blue.setPixelColor(6, neopixel.colors(NeoPixelColors.Blue))
-ropelight.show()
-blue.show()
-red.show()
+let blue: neopixel.Strip = null
+let rope = 0
+let strip: neopixel.Strip = null
+ONSTART()
 basic.forever(function () {
-    light_logic()
-})
-loops.everyInterval(5000, function () {
-	
+    if (rope <= 0) {
+        for (let index = 0; index < 4; index++) {
+            bluewin()
+            basic.pause(100)
+            bluewinreverse()
+            basic.pause(100)
+        }
+    } else if (rope >= 10) {
+        for (let index = 0; index < 4; index++) {
+            redwin()
+            basic.pause(100)
+            redwinreverse()
+            basic.pause(100)
+        }
+    }
 })
