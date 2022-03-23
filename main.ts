@@ -77,8 +77,8 @@ input.onButtonPressed(Button.B, function () {
 input.onPinPressed(TouchPin.P1, function () {
     rope += 1
     strip.rotate(1)
-    strip.show()
     red.setPixelColor(0, neopixel.colors(NeoPixelColors.Red))
+    strip.show()
     red.show()
 })
 function ONSTART () {
